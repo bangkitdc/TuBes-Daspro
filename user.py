@@ -5,11 +5,12 @@ import hash
 def register(data):
 	flag = True
 	while flag:
-		reg_name = inputs.input_valid('Masukan nama: ', validation = lambda x : filter_name(x), provision = 'Nama hanya terdiri dari alphabet.', flagstop = '!x').title()
+		reg_name = inputs.input_valid('Masukan nama: ', validation = lambda x : filter_name(x), provision = 'Nama hanya terdiri dari alphabet.', flagstop = '!x')
 		reg_name = utility.remove_space(reg_name)
-		if reg_name == '!X': # Karena di title !x -> !X
+		if reg_name == '!x':
 			return
 
+		reg_name = reg_name.title() # Agar diawali dengan huruf kapital
 		reg_username = inputs.input_valid('Masukan username: ', validation = lambda x : filter_username(x), provision = 'Username hanya terdiri dari A-Z, a-z, `_`, `-`, dan 0-9.')
 		reg_password = inputs.input_valid('Masukan password (min. 10 karakter): ', validation = lambda x : utility.length(x) >= 10, provision = 'Password minimal 10 karakter.')
 
