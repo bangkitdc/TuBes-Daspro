@@ -1,12 +1,15 @@
 import utility
 
 # Validasi input
-def input_valid(message, validation = lambda x : True, provision = '', lower = False, flagstop = ''):
+def input_valid(message, validation = lambda x : True, provision = '', lower = False, flagstop = '', type = ''):
 	if flagstop != '':
 		message += f'[{flagstop} untuk membatalkan] '
 
 	while True:
-		inp = utility.remove_space(input(message))
+		if not (type == 'pass'):
+			inp = utility.remove_space(input(message))
+		else:
+			inp = input(message)
 		if lower:
 			inp = inp.lower()
 		if flagstop != '' and inp == flagstop:
@@ -73,4 +76,3 @@ def is_number(x):
 		if not (ord('0') <= ord(i) <= ord('9')):
 			return False
 	return True
-	

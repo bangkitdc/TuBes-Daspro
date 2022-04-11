@@ -19,13 +19,13 @@ def remove_space(s):
 			temp += s[i]
 
 	# Menghilangkan spaces di awal string (reversed string, jadi sama saja seperti algoritma sebelumnya)
-	flag = False
-	for i in range(length(temp) - 1, -1, -1):
-		if temp[i] == ' ' and not flag:
-			continue
-		else:
-			flag = True
-			string += temp[i]
-	return string
+	# flag = False
+	# for i in range(length(temp) - 1, -1, -1):
+	# 	if temp[i] == ' ' and not flag:
+	# 		continue
+	# 	else:
+	# 		flag = True
+	# 		string += temp[i]
+	# return string
 
 # .join()
