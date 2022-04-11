@@ -49,11 +49,11 @@ def main():
 				if inp == 'register':
 					user.register(d)
 				elif inp == 'tambah_game':
-					break
+					tambah_game.tambah_game(d)
 				elif inp == 'ubah_game':
 					break
 				elif inp == 'ubah_stok':
-					break
+					ubah_stok.ubah_stok(d)
 				elif inp == 'topup':
 					break
 				else:
