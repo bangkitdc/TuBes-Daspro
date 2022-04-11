@@ -1,5 +1,5 @@
 import argparse
-import inputs, user, data, command, utility
+import inputs, user, data, game, command, utility, tictactoe, kerangajaib
 
 ERROR_MESSAGE = 'Perintah tidak valid, periksa kembali perintah atau izin role kamu (atau ketik `help` untuk melihat daftar perintah ʕ ᵔᴥᵔ ʔ)'
 
@@ -49,7 +49,7 @@ def main():
 				if inp == 'register':
 					user.register(d)
 				elif inp == 'tambah_game':
-					break
+					game.tambah_game(d)
 				elif inp == 'ubah_game':
 					break
 				elif inp == 'ubah_stok':
@@ -70,6 +70,10 @@ def main():
 					break
 				else:
 					print(ERROR_MESSAGE)
+		elif inp == 'tictactoe':
+			tictactoe.start()
+		elif inp == 'kerangajaib':
+			kerangajaib.start()
 		else:
 			print(ERROR_MESSAGE)
 

@@ -15,7 +15,7 @@
 # 3. bisa jadi
 # 4. mungkin
 # 5. tentunya
-# 6. tidak mungkin
+# 6. kepo
 # 7. coba lagi
 # 8. hmmm, gatau
 # 9. hehe
@@ -27,11 +27,11 @@ def panjang_string(string):
 		sum += 1
 	return sum
 
-def kerangajaib():
+def start():
 	pertanyaan = str(input('Apa pertanyaanmu? '))
 
 	kemungkinan = [(0, 'iyaa'), (1, 'ngga'), (2, 'bisa jadi'), (3, 'mungkin'),
-				   (4, 'tentunya'), (5, 'tidak mungkin'), (6, 'coba lagi'),
+				   (4, 'tentunya'), (5, 'kepo'), (6, 'coba lagi'),
 				   (7, 'hmmm, gatau'), (8, 'hehe'), (9, 'sabeb deh')]
 
 	import time
@@ -47,5 +47,3 @@ def kerangajaib():
 	for (p, q) in kemungkinan:
 		if LCG % 10 == p:
 			print(q)
-
-kerangajaib()

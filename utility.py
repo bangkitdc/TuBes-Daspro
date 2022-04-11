@@ -10,12 +10,22 @@ def remove_space(s):
 	temp = ''
 	string = ''
 	flag = False
+	# Menghilangkan spaces di belakang string
 	for i in range(length(s) - 1, -1, -1):
 		if s[i] == ' ' and not flag:
 			continue
 		else:
 			flag = True
 			temp += s[i]
-	for i in range(length(temp) - 1, -1, - 1):
-		string += temp[i]
+
+	# Menghilangkan spaces di awal string (reversed string, jadi sama saja seperti algoritma sebelumnya)
+	flag = False
+	for i in range(length(temp) - 1, -1, -1):
+		if temp[i] == ' ' and not flag:
+			continue
+		else:
+			flag = True
+			string += temp[i]
 	return string
+
+# .join()

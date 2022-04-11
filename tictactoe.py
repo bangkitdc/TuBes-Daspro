@@ -127,5 +127,3 @@ O Pemain 2''')
 			break
 
 		player = ubah_giliran(player)
-
-start()
