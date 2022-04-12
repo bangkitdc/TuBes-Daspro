@@ -96,3 +96,4 @@ def ubah_game(data):
                     if change[i] != '':
                         data[1][idx][i+1][1] = change[i]
                 print(f"Informasi {id} berhasil diubah.")
+    return data
