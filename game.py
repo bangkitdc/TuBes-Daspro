@@ -10,9 +10,9 @@ def tambah_game(data):
 
         nama = nama.title() # Agar diawali huruf kapital
         kategori = inputs.input_valid("Masukkan kategori: ", validation = lambda x : inputs.filter_sep(x)).title()
-        tahun_rilis = inputs.input_number("Masukkan tahun rilis: ", validation = lambda x : utility.length(x) <= 4, provision = 'Harus integer.')
-        harga = inputs.input_number("Masukkan harga: ", provision = 'Harus integer.')
-        stok = inputs.input_number("Masukkan stok awal: ", provision = 'Harus integer.')
+        tahun_rilis = inputs.input_number("Masukkan tahun rilis: ", validation = lambda x : utility.length(x) <= 4, provision = 'Tahun rilis harus berupa angka.')
+        harga = inputs.input_number("Masukkan harga: ", provision = 'Harga harus berupa angka.')
+        stok = inputs.input_number("Masukkan stok awal: ", provision = 'Stok harus berupa angka.')
         add = [nama, kategori, tahun_rilis, harga, stok]
         empty = 0
         for i in add:
