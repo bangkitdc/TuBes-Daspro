@@ -33,10 +33,11 @@ def tambah_game(data):
             print("Mohon masukkan semua informasi mengenai game agar dapat disimpan BNMO.")
     return data
 
-
 def ubah_stok(data):
     """Fungsi untuk mengubah stok game (F06)"""
-    id = input("Masukkan ID game: ")
+    id = inputs.input_valid("Masukkan ID game: ", validation = lambda x : filter_sep(x), flagstop = '!x')
+    if id == '!x':
+        return
     idx = 0
     flag = False
     while not flag and idx < utility.length(data[1]):
