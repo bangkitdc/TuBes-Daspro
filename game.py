@@ -1,5 +1,6 @@
 import utility, inputs
 
+
 def tambah_game(data):
     """Fungsi menambah game"""
     while True:
@@ -59,8 +60,39 @@ def ubah_stok(data):
                 else:  # change == 0
                     print("Stok tidak diubah. Stok sekarang: ", current_stock)
             else:
-                print("Stok game " + data[1][idx][1][1] + " gagal dikurangi. Stok sekarang: " + str(current_stock))
+                print("Stok game " + data[1][idx][1][1] + " gagal dikurangi. Stok sekarang: " + str(current_stock) + "( < " + str(abs(change)) + ")")
             data[1][idx][5][1] = str(current_stock)
         except ValueError:
             print("Input tidak valid! Stok harus berupa angka.")
     return data
+
+
+def ubah_game(data):
+    """Fungsi untuk mengubah informasi game kecuali ID game dan stok"""
+    id = input("Masukkan ID game: ")
+    if id == '':
+        print("Input kosong.")
+    else:
+        found = False
+        idx = 0
+        for i in range(utility.length(data[1])):
+            if id == data[1][i][0][1]:
+                found = True
+                idx = i
+                break
+        if not found:
+            print("Tidak ada game dengan ID tersebut!")
+        else:
+            # Berdasarkan Q&A, input dibawah ini dipastikan sudah sesuai
+            nama = input("Masukkan nama game: ").title()
+            kategori = input("Masukkan kategori: ").title()
+            tahun_rilis = input("Masukkan tahun rilis: ")
+            harga = input("Masukkan harga: ")
+            change = [nama, kategori, tahun_rilis, harga]
+            if inputs.is_empty(change):
+                print("Semua field kosong. Tidak ada perubahan yang dilakukan.")
+            else:
+                for i in range(utility.length(change)):
+                    if change[i] != '':
+                        data[1][idx][i+1][1] = change[i]
+                print(f"Informasi {id} berhasil diubah.")
