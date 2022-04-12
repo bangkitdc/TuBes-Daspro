@@ -32,3 +32,35 @@ def tambah_game(data):
         else:
             print("Mohon masukkan semua informasi mengenai game agar dapat disimpan BNMO.")
     return data
+
+
+def ubah_stok(data):
+    """Fungsi untuk mengubah stok game (F06)"""
+    id = input("Masukkan ID game: ")
+    idx = 0
+    flag = False
+    while not flag and idx < utility.length(data[1]):
+        if data[1][idx][0][1] == id:
+            flag = True
+        else:
+            idx += 1
+    if not flag:
+        print("Tidak ada game dengan ID tersebut!")
+    else:
+        try:
+            change = int(input("Masukkan jumlah: "))
+            current_stock = int(data[1][idx][5][1])
+            if current_stock + change >= 0:
+                current_stock += change
+                if change > 0:
+                    print("Stok game " + data[1][idx][1][1] + " berhasil ditambahkan. Stok sekarang: " + str(current_stock))
+                elif change < 0:
+                    print("Stok game " + data[1][idx][1][1] + " berhasil dikurangi. Stok sekarang: " + str(current_stock))
+                else:  # change == 0
+                    print("Stok tidak diubah. Stok sekarang: ", current_stock)
+            else:
+                print("Stok game " + data[1][idx][1][1] + " gagal dikurangi. Stok sekarang: " + str(current_stock))
+            data[1][idx][5][1] = str(current_stock)
+        except ValueError:
+            print("Input tidak valid! Stok harus berupa angka.")
+    return data
