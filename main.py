@@ -51,7 +51,7 @@ def main():
 				elif inp == 'tambah_game':
 					game.tambah_game(d)
 				elif inp == 'ubah_game':
-					break
+					game.ubah_game(d)
 				elif inp == 'ubah_stok':
 					game.ubah_stok(d)
 				elif inp == 'topup':
