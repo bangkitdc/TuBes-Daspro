@@ -76,3 +76,12 @@ def is_number(x):
 		if not (ord('0') <= ord(i) <= ord('9')):
 			return False
 	return True
+
+
+def is_empty(x):
+	"""Return True jika array kosong"""
+	count = True
+	for i in x:
+		if i != '':
+			count = False
+	return count
