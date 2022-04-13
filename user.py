@@ -20,14 +20,14 @@ def register(data):
 			flag = False
 
 	if inputs.find_idx_key_with_target(data[0], 1, reg_username) == -1: # User tidak ditemukan
-		data[0] += [
+		data[0] += [[
 			['id', str(utility.length(data[0]) + 1)], 
 			['username', reg_username], 
 			['nama', reg_name], 
 			['password', hash.encrypt(reg_password)],
 			['role', 'user'],
 			['saldo', '0']
-		]
+		]]
 		print(f'Username {reg_username} telah berhasil register ke dalam "Binomo".')
 	else:
 		print(f'Username {reg_username} sudah terpakai, silakan menggunakan username lain.')

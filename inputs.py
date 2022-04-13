@@ -77,7 +77,6 @@ def is_number(x):
 			return False
 	return True
 
-
 def is_empty(x):
 	"""Return True jika array kosong"""
 	count = True

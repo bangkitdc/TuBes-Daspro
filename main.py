@@ -29,7 +29,7 @@ def main():
 		# Cek input
 		if inp == 'debug':
 			# untuk debug
-			print(d)
+			print(dUser[0][1])
 		elif inp == 'login':
 			u = user.login(d)
 			if u != None:
@@ -61,9 +61,9 @@ def main():
 
 			elif dUser[4][1] == 'user':
 				if inp == 'buy_game':
-					break
+					game.buy_game(dUser[0][1], d)
 				elif inp == 'list_game':
-					break
+					game.list_game(dUser[0][1], d)
 				elif inp == 'search_my_game':
 					break
 				elif inp == 'riwayat':
