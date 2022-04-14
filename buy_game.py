@@ -27,7 +27,9 @@ def buy_game(userID, d) :
     riwayat = d[2]
     milik = d[3]
 
-    gameID = str(input('Masukkan ID Game: '))
+    gameID = inputs.input_valid('Masukkan ID Game: ', validation = lambda x : inputs.filter_sep(x), flagstop = '!x')
+    if gameID == '!x':
+        return
 
     for i in range(length(game)) :  # cari gameID di game
         if gameID in game[i][0] :   # jika ada gameID di game
