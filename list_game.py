@@ -1,14 +1,8 @@
-# import utility as ul
+from utility import length
 
 # Contoh data
 # d = [[[['id', '1'], ['username', 'admin'], ['nama', 'Admin'], ['password', 'bklzo2584>'], ['role', 'user'], ['saldo', '100000']], [['id', '2'], ['username', 'tara123'], ['nama', 'Tara'], ['password', 'bazbobtabokn'], ['role', 'user'], ['saldo', '50000']]], [[['id', 'GAME001'], ['nama', 'Python Gaming'], ['kategori', 'Adventure'], ['tahun_rilis', '2022'], ['harga', '150000'], ['stok', '100']], [['id', 'GAME069'], ['nama', 'Haskell Gaming'], ['kategori', 'Programming'], ['tahun_rilis', '2015'], ['harga', '230000'], ['stok', '25']]], [[['game_id', 'GAME001'], ['nama', 'Valorant'], ['harga', '0'], ['user_id', '1'], ['tahun_beli', '2021']]], [[['game_id', 'GAME001'], ['user_id', '2']], [['game_id', 'GAME069'], ['user_id', '2']]]]
 
-
-def length(arr) :
-    length = 0
-    for i in arr :
-        length += 1
-    return length
 
 def game_id(a, data) :
     game_id = data[1][a][0][1]       # dari data game
