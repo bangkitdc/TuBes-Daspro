@@ -1,4 +1,4 @@
-# LCG
+# Implementasi LCG (Linear Congruential Generator)
 
 # Xn+1 = ((a * Xn) + c) mod m
 # random integers dari 0 hingga m - 1
@@ -14,36 +14,34 @@
 # 2. ngga
 # 3. bisa jadi
 # 4. mungkin
-# 5. tentunya
+# 5. sok asik
 # 6. kepo
 # 7. coba lagi
 # 8. hmmm, gatau
 # 9. hehe
 # 10. sabeb deh
 
-def panjang_string(string):
-	sum = 0
-	for i in string:
-		sum += 1
-	return sum
+import time, math, utility
 
 def start():
-	pertanyaan = str(input('Apa pertanyaanmu? '))
+	print()
+	print('kerangajaib : apa?')
+	pertanyaan = str(input('kamu        : '))
 
 	kemungkinan = [(0, 'iyaa'), (1, 'ngga'), (2, 'bisa jadi'), (3, 'mungkin'),
-				   (4, 'tentunya'), (5, 'kepo'), (6, 'coba lagi'),
+				   (4, 'sok asik'), (5, 'kepo'), (6, 'coba lagi'),
 				   (7, 'hmmm, gatau'), (8, 'hehe'), (9, 'sabeb deh')]
 
-	import time
-	import math
+	# mengambil seconds dari waktu eksekusi
 	seconds = math.ceil(time.time())
 
+	# menggunakan variasi seconds dan panjang string dari pertanyaan
 	x = seconds
-	a = panjang_string(pertanyaan)
+	a = utility.length(pertanyaan)
 	c = 3
 	m = 2 ** 24
 
 	LCG = ((a * x) + c) % m
 	for (p, q) in kemungkinan:
 		if LCG % 10 == p:
-			print(q)
+			print(f'kerangajaib : {q}')

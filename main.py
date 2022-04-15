@@ -1,4 +1,5 @@
-import argparse
+import argparse, time
+import bmo
 import inputs, user, data, game, command, utility, tictactoe, kerangajaib
 
 ERROR_MESSAGE = 'Perintah tidak valid, periksa kembali perintah atau izin role kamu (atau ketik `help` untuk melihat daftar perintah ʕ ᵔᴥᵔ ʔ)'
@@ -8,7 +9,13 @@ def main():
 	parser = argparse.ArgumentParser(description = 'BNMO Robot Pereda Stres')
 	parser.add_argument('nama_folder', metavar = 'nama_folder', type = str, help = 'Nama folder berisi data eksternal.')
 	args = parser.parse_args()
+	# Interface
 	print('Loading...')
+	for i in ('...'):
+		print(i)
+		time.sleep(1)
+	bmo.interface()
+	# Load data dalam folder 'nama_folder'
 	d = data.load_data(args.nama_folder)
 	dUser = [['id', '-1'], ['username', ''], ['nama', ''], ['password', ''], ['role', ''], ['saldo', '']]
 	print('Selamat datang di "BNMO"!!!')
@@ -26,10 +33,10 @@ def main():
 			header = f'Guest {header}'
 
 		inp = inputs.input_valid(header, lower = True)
+		
 		# Cek input
 		if inp == 'debug':
-			# untuk debug
-			print(dUser[0][1])
+			print(d)
 		elif inp == 'login':
 			u = user.login(d)
 			if u != None:
@@ -58,7 +65,6 @@ def main():
 					break
 				else:
 					print(ERROR_MESSAGE)
-
 			elif dUser[4][1] == 'user':
 				if inp == 'buy_game':
 					game.buy_game(dUser[0][1], d)

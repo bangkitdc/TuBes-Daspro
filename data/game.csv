@@ -1,3 +1,5 @@
 id;nama;kategori;tahun_rilis;harga;stok
-GAME001;Python Gaming;Adventure;2022;150000;100
-GAME002;Valorant;Fps;2020;0;100
+GAME001;Super Mario Bros.;Platform;1985;49000;167
+GAME002;Pokemon Red/Pokemon Blue;Role-Playing;1996;149000;52
+GAME003;Tetris;Puzzle;1989;19000;320
+GAME004;Duck Hunt;Shooter;1984;59000;11

@@ -1,3 +1,5 @@
+# Implementasi fungsi sendiri
+
 # len() = length()
 def length(lst):
 	count = 0
@@ -27,5 +29,3 @@ def remove_space(s, params = 'depan'):
 			flag = True
 			string += temp[i]
 	return string
-
-# .join()

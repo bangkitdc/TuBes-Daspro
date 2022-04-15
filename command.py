@@ -18,6 +18,7 @@ F16 = 'save' #user and admin
 F17 = 'exit' #user and admin
 
 def help(role):
+	print('=========== HELP ===========')
 	print('1  || ' + F03 + ' ' * (20 - length(F03)) + ' || Untuk melakukan login ke dalam sistem', 
     '2  || ' + F14 + ' ' * (20 - length(F14)) + ' || Untuk melihat panduan penggunaan sistem', 
     '3  || ' + F17 + ' ' * (20 - length(F17)) + ' || Untuk keluar dari aplikasi', sep = '\n')
@@ -39,6 +40,7 @@ def help(role):
 
 def exit(d):
 	if inputs.input_yesorno('Apakah kamu ingin menyimpan data sebelum keluar? '):
-		data.save_data(d)
+		if data.save_data(d) == None:
+			return
 	print('Terima kasih! Jangan lupa mampir lagi xixixi ＼ʕ •ᴥ•ʔ／')
 	sys.exit()

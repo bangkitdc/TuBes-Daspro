@@ -7,6 +7,16 @@ headers = []
 
 def read_csv(file, fileidx, sep = ';'):
 	global headers
+	'''
+		Membaca CSV dari file -> list
+
+		Arguments:
+			file(IO)			: file yang akan diread
+			sep(str, optional)	: separator pada CSV file
+
+		Returns:
+			list: data parsed dari CSV file
+	'''
 
 	data = []
 	text = ''
@@ -26,9 +36,9 @@ def read_csv(file, fileidx, sep = ';'):
 	# Read tiap row dalam file
 	while True:
 		line = file.readline()
-		if utility.length(line) == 0:
+		if utility.length(line) == 0: # file kosong
 			break
-		if line == '\n':
+		if line == '\n': # ignore newline
 			continue
 
 		idx = 0
@@ -41,13 +51,22 @@ def read_csv(file, fileidx, sep = ';'):
 			else:
 				text += i
 		if idx != utility.length(header_arr):
-			print(f"Error memparsing CSV: Panjang row & column tidak sinkron saat membaca '{file.name}'")
+			print(f"Error saat parsing CSV: Panjang row & column tidak sinkron saat membaca '{file.name}'")
 			exit()
 		data += [rowData]
 	return data
 
 def load_data(folder_name):
 	global filenames, file_ext
+	'''
+		Load data pada folder
+
+		Arguments:
+			folder_name(str)	: folder database
+
+		Returns:
+			list: data keseluruhan dari semu CSV files yang ada di folder_name
+	'''
 
 	data = []
 	if not os.path.exists(folder_name):
@@ -65,21 +84,36 @@ def load_data(folder_name):
 
 def to_csv(data, fileidx, sep = ';'):
 	global headers
+	'''
+		Mengubah data(list) -> CSV file
 
+		Arguments:
+			data(list)			: data yang akan diubah ke CSV file
+			sep(str, optional)	: separator pada CSV file
+
+		Returns:
+			str 	: CSV strings representasi dari data
+	'''
 	output = ''
 	# print Header
 	output = sep.join(headers[fileidx]) + '\n'
-	# print tiap baris
+	# print tiap baris setelahnya
 	for i in data:
 		temp = ''
 		for j in range(utility.length(i)):
 			temp += i[j][1]
 			if j != len(i) - 1:
 				temp += sep
-		output += temp + '\n'
+		output += temp + '\n' # diakhiri dengan newline
 	return output
 
 def save_data(data):
+	'''
+		Save semua data yang ada ke folder database
+
+		Arguments:
+			data(list)	: data yang akan disave ke folder (dalam bentuk CSV files)
+	'''
 	global filenames, file_ext
 
 	folder_name = inputs.input_valid('Masukkan nama folder penyimpanan: ', validation = lambda x : filter_folder(x), flagstop = '!x')
@@ -94,9 +128,13 @@ def save_data(data):
 	print('Saving...')
 	for i in range(utility.length(filenames)):
 		path = os.path.join(folder_name, filenames[i]+file_ext)
-		with open(path, 'w') as f:
-			f.write(to_csv(data[i], i))
-		# kalo error permission denied (tambahan aja)
+		try:
+			with open(path, 'w') as f:
+				f.write(to_csv(data[i], i))
+		except OSError as error:
+			print(error)
+			print('Data unsaved!')
+			return None
 	print('Data saved succesfully!')
 
 def filter_folder(x):

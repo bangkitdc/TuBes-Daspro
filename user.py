@@ -3,6 +3,7 @@ import inputs, utility
 import hash
 
 def register(data):
+	'''Fungsi Register'''
 	flag = True
 	while flag:
 		reg_name = inputs.input_valid('Masukan nama: ', validation = lambda x : inputs.filter_name(x), provision = 'Nama hanya terdiri dari alphabet.', flagstop = '!x')
@@ -19,7 +20,7 @@ def register(data):
 		else:
 			flag = False
 
-	if inputs.find_idx_key_with_target(data[0], 1, reg_username) == -1: # User tidak ditemukan
+	if inputs.find_idx_key_with_target(data[0], 1, reg_username) == -1: # jika user tidak ditemukan
 		data[0] += [[
 			['id', str(utility.length(data[0]) + 1)], 
 			['username', reg_username], 
@@ -29,10 +30,11 @@ def register(data):
 			['saldo', '0']
 		]]
 		print(f'Username {reg_username} telah berhasil register ke dalam "Binomo".')
-	else:
+	else: # user ditemukan
 		print(f'Username {reg_username} sudah terpakai, silakan menggunakan username lain.')
 
 def login(data):
+	'''Fungsi Login'''
 	while True:
 		username = inputs.input_valid('Masukan username: ', flagstop = '!x')
 		if username == '!x':
@@ -40,8 +42,8 @@ def login(data):
 		password = inputs.input_valid('Masukan password: ')
 		data_user = data[0] # user.csv
 		user_id = inputs.find_idx_key_with_target(data_user, 1, username)
-		if user_id != -1 and hash.encrypt(password) == data_user[int(user_id) - 1][3][1]: # password
+		if user_id != -1 and hash.encrypt(password) == data_user[int(user_id) - 1][3][1]: # password sesuai
 			print(f'Halo {data_user[int(user_id) - 1][2][1]}! Selamat datang di "Binomo".')
-			return data_user[int(user_id) - 1] # id
+			return data_user[int(user_id) - 1] # return id credential
 		else:
 			print('Password atau username salah atau tidak ditemukan.')

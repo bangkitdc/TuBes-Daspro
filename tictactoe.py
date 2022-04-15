@@ -1,3 +1,5 @@
+# Game TicTacToe
+
 def update_papan(papan):
 	print()
 	print('Status Papan')
@@ -54,6 +56,7 @@ def player_win(papan, player):
 	return False
 
 def papan_full(papan):
+	# cek apakah papan full atau tidak
 	for i in range(3):
 		for j in range(3):
 			if papan[i][j] == '#':
@@ -64,16 +67,19 @@ def ubah_giliran(player):
 	return 'X' if player == 'O' else 'O'
 
 def validasi_papan(x, y):
+	# validasi input
 	if not (1 <= x <= 3) or not (1 <= y <= 3):
 		return False
 	return True
 
 def papan_terisi(papan, x, y):
+	# cek apakah elemen papan[x][y] sudah terisi atau belum
 	if papan[x - 1][y - 1] != '#':
 		return True
 	return False
 
 def start():
+	# setup papan
 	papan = [['#' for i in range(3)] for j in range(3)]
 
 	print('''Legenda:
@@ -99,7 +105,7 @@ O Pemain 2''')
 			x = int(input('baris: '))
 			y = int(input('kolom: '))
 
-		# check sudah terisi atau belum
+		# check elemen papan sudah terisi atau belum
 		while papan_terisi(papan, x, y):
 			print('Kotak sudah terisi. Silakan pilih kotak lain.')
 			print()
