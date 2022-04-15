@@ -1,21 +1,23 @@
 import inputs, sys, data
 from utility import length
 
-F02 = 'register' #admin
-F03 = 'login' #user and admin
-F04 = 'tambah_game' #admin
-F05 = 'ubah_game' #admin
-F06 = 'ubah_stok' #admin
-F07 = 'list_game_toko' #user and admin
-F08 = 'buy_game' #user
-F09 = 'list_game' #user
-F10 = 'search_my_game' #user
-F11 = 'search_game_at_store' #user and admin
-F12 = 'topup' #admin
-F13 = 'riwayat' #user
-F14 = 'help' #user and admin
-F16 = 'save' #user and admin
-F17 = 'exit' #user and admin
+F02 = 'register' # admin
+F03 = 'login' # user and admin
+F04 = 'tambah_game' # admin
+F05 = 'ubah_game' # admin
+F06 = 'ubah_stok' # admin
+F07 = 'list_game_toko' # user and admin
+F08 = 'buy_game' # user
+F09 = 'list_game' # user
+F10 = 'search_my_game' # user
+F11 = 'search_game_at_store' # user and admin
+F12 = 'topup' # admin
+F13 = 'riwayat' # user
+F14 = 'help' # user and admin
+F16 = 'save' # user and admin
+F17 = 'exit' # user and admin
+B02 = 'kerangajaib' # user and admin
+B03 = 'tictactoe' # user and admin
 
 def help(role):
 	print('=========== HELP ===========')
@@ -37,6 +39,10 @@ def help(role):
             '8  || ' + F09 + ' ' * (20 - length(F09)) + ' || Untuk melihat daftar game yang telah dibeli',
             '9  || ' + F10 + ' ' * (20 - length(F10)) + ' || Untuk mencari game yang telah dibeli',
             '10 || ' + F13 + ' ' * (20 - length(F13)) + ' || Untuk melihat riwayat pembelian game', sep = '\n')
+	print()
+	print('======== MINI GAMES ========')
+	print('1  || ' + B02 + ' ' * (20 - length(B02)) + ' || Untuk bertanya kepada kerang ajaib', 
+    '2  || ' + B03 + ' ' * (20 - length(B03)) + ' || Untuk bermain tic-tac-toe', sep = '\n')
 
 def exit(d):
 	if inputs.input_yesorno('Apakah kamu ingin menyimpan data sebelum keluar? '):

@@ -3,9 +3,14 @@
 def update_papan(papan):
 	print()
 	print('Status Papan')
-	for i in range(3):
-		for j in range(3):
-			print(papan[i][j], end = '')
+	for i in range(7):
+		if i % 2 == 1:
+			for j in range(3):
+				print('|', papan[i - (i // 2) - 1][j], end = ' ')
+				if j == 2:
+					print('|', end = '')
+		else:
+			print('+---+---+---+', end = '')
 		print()
 	print()
 
@@ -59,7 +64,7 @@ def papan_full(papan):
 	# cek apakah papan full atau tidak
 	for i in range(3):
 		for j in range(3):
-			if papan[i][j] == '#':
+			if papan[i][j] == ' ':
 				return False
 	return True
 
@@ -74,18 +79,21 @@ def validasi_papan(x, y):
 
 def papan_terisi(papan, x, y):
 	# cek apakah elemen papan[x][y] sudah terisi atau belum
-	if papan[x - 1][y - 1] != '#':
+	if papan[x - 1][y - 1] != ' ':
 		return True
 	return False
 
 def start():
 	# setup papan
-	papan = [['#' for i in range(3)] for j in range(3)]
-
-	print('''Legenda:
-# Kosong
-X Pemain 1
-O Pemain 2''')
+	papan = [[' ' for i in range(3)] for j in range(3)]
+	print('+---------------------------+')
+	print('''| Legenda:                  |
+| X Pemain 1                |
+| O Pemain 2                |''')
+	print('+---------------------------+')
+	print('| Keterangan:               |')
+	print('| -999 untuk exit dari game |')
+	print('+---------------------------+')
 
 	player = 'X'
 	while True:
@@ -95,7 +103,11 @@ O Pemain 2''')
 		# input user
 		print(f'Giliran Pemain "{player}"')
 		x = int(input('baris: '))
+		if x == -999:
+			return
 		y = int(input('kolom: '))
+		if y == -999:
+			return
 
 		# validasi row, column papan
 		while not (validasi_papan(x, y)):
@@ -103,7 +115,11 @@ O Pemain 2''')
 			print()
 			print(f'Giliran Pemain "{player}"')
 			x = int(input('baris: '))
+			if x == -999:
+				return
 			y = int(input('kolom: '))
+			if y == -999:
+				return
 
 		# check elemen papan sudah terisi atau belum
 		while papan_terisi(papan, x, y):
@@ -111,7 +127,23 @@ O Pemain 2''')
 			print()
 			print(f'Giliran Pemain "{player}"')
 			x = int(input('baris: '))
+			if x == -999:
+				return
 			y = int(input('kolom: '))
+			if y == -999:
+				return
+
+			# validasi row, column papan kembali
+			while not (validasi_papan(x, y)):
+				print('Kotak tidak valid.')
+				print()
+				print(f'Giliran Pemain "{player}"')
+				x = int(input('baris: '))
+				if x == -999:
+					return
+				y = int(input('kolom: '))
+				if y == -999:
+					return
 
 		# fix row, column
 		x -= 1
