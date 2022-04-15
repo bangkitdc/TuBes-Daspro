@@ -42,5 +42,7 @@ def exit(d):
 	if inputs.input_yesorno('Apakah kamu ingin menyimpan data sebelum keluar? '):
 		if data.save_data(d) == None:
 			return
+	print()
 	print('Terima kasih! Jangan lupa mampir lagi xixixi ＼ʕ •ᴥ•ʔ／')
+	print()
 	sys.exit()

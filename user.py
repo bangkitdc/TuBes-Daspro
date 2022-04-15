@@ -42,6 +42,7 @@ def login(data):
 		password = inputs.input_valid('Masukan password: ')
 		data_user = data[0] # user.csv
 		user_id = inputs.find_idx_key_with_target(data_user, 1, username)
+		print()
 		if user_id != -1 and hash.encrypt(password) == data_user[int(user_id) - 1][3][1]: # password sesuai
 			print(f'Halo {data_user[int(user_id) - 1][2][1]}! Selamat datang di "Binomo".')
 			return data_user[int(user_id) - 1] # return id credential

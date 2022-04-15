@@ -67,7 +67,7 @@ def input_yesorno(message, parse = True):
 	'''
 	message += '(y/ n) '
 	choices = ['y', 'n']
-	inp = input_valid(message, validation = lambda x : x in choices)
+	inp = input_valid(message, validation = lambda x : x in choices, lower = True)
 	return (inp == 'y' if parse else False)
 
 # filter name
@@ -182,3 +182,20 @@ def is_empty(x):
 		if i != '':
 			count = False
 	return count
+
+def filter_folder(x):
+	'''
+		Filter nama folder -> agar tidak error
+
+		Arguments:
+			x(str)	: string yang akan diolah (elemen per elemen) 
+	
+		Returns:
+			bool 	: jika elemen yang dicek pada string sesuai spesifikasi return True else False
+	'''
+	exception = '\\/:*?"<>|'
+	for i in x:
+		if i in exception:
+			return False
+	return True
+

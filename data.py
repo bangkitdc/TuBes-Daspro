@@ -1,4 +1,4 @@
-import os
+import os, time
 import inputs, utility
 
 file_ext = '.csv'
@@ -116,7 +116,7 @@ def save_data(data):
 	'''
 	global filenames, file_ext
 
-	folder_name = inputs.input_valid('Masukkan nama folder penyimpanan: ', validation = lambda x : filter_folder(x), flagstop = '!x')
+	folder_name = inputs.input_valid('Masukkan nama folder penyimpanan: ', validation = lambda x : inputs.filter_folder(x), flagstop = '!x')
 	if folder_name == '!x':
 		return
 	if not os.path.exists(folder_name):
@@ -135,11 +135,7 @@ def save_data(data):
 			print(error)
 			print('Data unsaved!')
 			return None
+	for i in ('...'):
+		print(i)
+		time.sleep(1)
 	print('Data saved succesfully!')
-
-def filter_folder(x):
-	exception = '\\/:*?"<>|'
-	for i in x:
-		if i in exception:
-			return False
-	return True
