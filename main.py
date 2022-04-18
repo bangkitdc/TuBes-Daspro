@@ -51,7 +51,7 @@ def main():
 			elif inp == 'list_game_toko':
 				break
 			elif inp == 'search_game_at_store':
-				break
+				game.search_game_at_store(d[1])
 			elif dUser[4][1] == 'admin':
 				if inp == 'register':
 					user.register(d)
