@@ -62,7 +62,7 @@ def main():
 				elif inp == 'ubah_stok':
 					game.ubah_stok(d)
 				elif inp == 'topup':
-					break
+					game.topup(d[0])
 				else:
 					print(ERROR_MESSAGE)
 			elif dUser[4][1] == 'user':
