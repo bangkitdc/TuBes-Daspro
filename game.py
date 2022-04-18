@@ -136,21 +136,21 @@ def list_game_toko_ascending(data, scheme):
     for i in range(utility.length(data[1])):
         print(f"{i + 1}. {data[1][i][0][1]} | {data[1][i][1][1]} | {data[1][i][4][1]} | {data[1][i][2][1]} | {data[1][i][3][1]} | {data[1][i][5][1]}")
 
-
 def list_game_toko(data):
     """Fungsi mencetak hasil skema pengurutan"""
-    inp = ['tahun+', 'tahun-', 'harga+', 'harga-']
+    # Menyimpan data pada variabel baru agar saat di save tidak merubah urutan database utama
+    dummy_data = data
     prompt = input("Skema sorting: ")
-    if prompt not in inp:
-        print("Skema sorting tidak valid!")
-    elif prompt == 'tahun+':
-        list_game_toko_ascending(data, 'tahun')
+    if prompt == 'tahun+':
+        list_game_toko_ascending(dummy_data, 'tahun')
     elif prompt == 'tahun-':
-        list_game_toko_descending(data, 'tahun')
+        list_game_toko_descending(dummy_data, 'tahun')
     elif prompt == 'harga+':
-        list_game_toko_ascending(data, 'harga')
+        list_game_toko_ascending(dummy_data, 'harga')
     elif prompt == 'harga-':
-        list_game_toko_descending(data, 'harga')
+        list_game_toko_descending(dummy_data, 'harga')
+    else:
+        print("Skema sorting tidak valid!")
 # buy game
 
 def stock(a, data) :
