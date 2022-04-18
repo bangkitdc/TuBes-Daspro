@@ -49,7 +49,7 @@ def main():
 			if inp == 'save':
 				data.save_data(d)
 			elif inp == 'list_game_toko':
-				break
+				game.list_game_toko(d)
 			elif inp == 'search_game_at_store':
 				break
 			elif dUser[4][1] == 'admin':
