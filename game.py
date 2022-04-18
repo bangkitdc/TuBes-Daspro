@@ -255,3 +255,30 @@ def search_my_game(iduser, DataGame, DataKepemilikan):
         print(gameowned)
     else:
         print("Tidak ada game pada inventory-mu yang memenuhi kriteria")
+        
+# Top Up Saldo 
+
+def topup(DataUser):
+    username = input("Masukkan username: ")
+    saldo = input("Masukan saldo: ")
+    found = False
+    baris = 0
+    for i in range(utility.length(DataUser)):
+        if DataUser[i][1][1] == username:
+            found = True
+            baris = i
+            break
+
+    if found:
+        saldosaatini = int(DataUser[baris][5][1])
+        if saldosaatini + int(saldo) < 0:
+            print("Masukan tidak valid.")
+        else:
+            saldoakhir = saldosaatini + int(saldo)
+            DataUser[baris][5][1] = str(saldoakhir)
+            nama = DataUser[baris][2][1]
+            print(f"Top up berhasil. Saldo {nama} bertambah menjadi {saldoakhir}")
+            print(DataUser)
+    else:
+        print(f'Username "{username}" tidak ditemukan.')
+    return DataUser
