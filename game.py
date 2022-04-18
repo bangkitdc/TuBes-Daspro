@@ -99,6 +99,58 @@ def ubah_game(data):
                 print(f"Informasi {id} berhasil diubah.")
     return data
 
+def list_game_toko_descending(data, scheme):
+    """Fungsi mengurutkan dari terbesar ke terkecil (menurun)"""
+    for i in range(utility.length(data[1]) - 1):
+        idx_max = i
+        for j in range(i, utility.length(data[1])):
+            if scheme == 'tahun':
+                if int(data[1][idx_max][3][1]) < int(data[1][j][3][1]):
+                    idx_max = j
+            elif scheme == 'harga':
+                if int(data[1][idx_max][4][1]) < int(data[1][j][4][1]):
+                    idx_max = j
+        temp = data[1][idx_max]
+        data[1][idx_max] = data[1][i]
+        data[1][i] = temp
+
+    for i in range(utility.length(data[1])):
+        print(f"{i + 1}. {data[1][i][0][1]} | {data[1][i][1][1]} | {data[1][i][4][1]} | {data[1][i][2][1]} | {data[1][i][3][1]} | {data[1][i][5][1]}")
+
+
+def list_game_toko_ascending(data, scheme):
+    """Fungsi mengurutkan dari terkecil ke terbesar (menaik)"""
+    for i in range(utility.length(data[1]) - 1):
+        idx_min = i
+        for j in range(i, utility.length(data[1])):
+            if scheme == 'tahun':
+                if int(data[1][idx_min][3][1]) > int(data[1][j][3][1]):
+                    idx_min = j
+            elif scheme == 'harga':
+                if int(data[1][idx_min][4][1]) > int(data[1][j][4][1]):
+                    idx_min = j
+        temp = data[1][idx_min]
+        data[1][idx_min] = data[1][i]
+        data[1][i] = temp
+
+    for i in range(utility.length(data[1])):
+        print(f"{i + 1}. {data[1][i][0][1]} | {data[1][i][1][1]} | {data[1][i][4][1]} | {data[1][i][2][1]} | {data[1][i][3][1]} | {data[1][i][5][1]}")
+
+
+def list_game_toko(data):
+    """Fungsi mencetak hasil skema pengurutan"""
+    inp = ['tahun+', 'tahun-', 'harga+', 'harga-']
+    prompt = input("Skema sorting: ")
+    if prompt not in inp:
+        print("Skema sorting tidak valid!")
+    elif prompt == 'tahun+':
+        list_game_toko_ascending(data, 'tahun')
+    elif prompt == 'tahun-':
+        list_game_toko_descending(data, 'tahun')
+    elif prompt == 'harga+':
+        list_game_toko_ascending(data, 'harga')
+    elif prompt == 'harga-':
+        list_game_toko_descending(data, 'harga')
 # buy game
 
 def stock(a, data) :
