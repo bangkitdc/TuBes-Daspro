@@ -257,7 +257,6 @@ def search_my_game(iduser, DataGame, DataKepemilikan):
         print("Tidak ada game pada inventory-mu yang memenuhi kriteria")
         
 # Top Up Saldo 
-
 def topup(DataUser):
     username = input("Masukkan username: ")
     saldo = input("Masukan saldo: ")
