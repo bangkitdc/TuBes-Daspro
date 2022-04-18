@@ -29,3 +29,11 @@ def remove_space(s, params = 'depan'):
 			flag = True
 			string += temp[i]
 	return string
+#buat dipake di f11 dan f13
+def removebaris(matriks, baris):
+    arraybaru = []
+    for i in range(baris):
+        arraybaru += [matriks[i]]
+    for i in range(baris+1, length(matriks)):
+        arraybaru += [matriks[i]]
+    return arraybaru
