@@ -321,3 +321,13 @@ def topup(DataUser):
     else:
         print(f'Username "{username}" tidak ditemukan.')
     return DataUser
+
+# Melihat Riwayat Pembelian
+def riwayat(iduser, DataRiwayat):
+    datariwayatuser = []
+    for i in range(utility.length(DataRiwayat)):
+        print(iduser)
+        print(DataRiwayat)
+        if DataRiwayat[i][3][1] == iduser:
+            datariwayatuser += [utility.removebaris(DataRiwayat[i], 3)]
+    print(datariwayatuser)
