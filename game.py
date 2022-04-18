@@ -101,40 +101,41 @@ def ubah_game(data):
 
 def list_game_toko_descending(data, scheme):
     """Fungsi mengurutkan dari terbesar ke terkecil (menurun)"""
-    for i in range(utility.length(data[1]) - 1):
+    for i in range(utility.length(data[0]) - 1):
         idx_max = i
-        for j in range(i, utility.length(data[1])):
+        for j in range(i, utility.length(data[0])):
             if scheme == 'tahun':
-                if int(data[1][idx_max][3][1]) < int(data[1][j][3][1]):
+                if int(data[0][idx_max][3][1]) < int(data[0][j][3][1]):
                     idx_max = j
             elif scheme == 'harga':
-                if int(data[1][idx_max][4][1]) < int(data[1][j][4][1]):
+                if int(data[0][idx_max][4][1]) < int(data[0][j][4][1]):
                     idx_max = j
-        temp = data[1][idx_max]
-        data[1][idx_max] = data[1][i]
-        data[1][i] = temp
+        temp = data[0][idx_max]
+        data[0][idx_max] = data[0][i]
+        data[0][i] = temp
 
-    for i in range(utility.length(data[1])):
-        print(f"{i + 1}. {data[1][i][0][1]} | {data[1][i][1][1]} | {data[1][i][4][1]} | {data[1][i][2][1]} | {data[1][i][3][1]} | {data[1][i][5][1]}")
-
+    # Mencetak hasil pengurutan
+    for i in range(utility.length(data[0])):
+        print(f"{i + 1}. {data[0][i][0][1]} | {data[0][i][1][1]} | {data[0][i][4][1]} | {data[0][i][2][1]} | {data[0][i][3][1]} | {data[0][i][5][1]}")
 
 def list_game_toko_ascending(data, scheme):
     """Fungsi mengurutkan dari terkecil ke terbesar (menaik)"""
-    for i in range(utility.length(data[1]) - 1):
+    for i in range(utility.length(data[0]) - 1):
         idx_min = i
-        for j in range(i, utility.length(data[1])):
+        for j in range(i, utility.length(data[0])):
             if scheme == 'tahun':
-                if int(data[1][idx_min][3][1]) > int(data[1][j][3][1]):
+                if int(data[0][idx_min][3][1]) > int(data[0][j][3][1]):
                     idx_min = j
             elif scheme == 'harga':
-                if int(data[1][idx_min][4][1]) > int(data[1][j][4][1]):
+                if int(data[0][idx_min][4][1]) > int(data[0][j][4][1]):
                     idx_min = j
-        temp = data[1][idx_min]
-        data[1][idx_min] = data[1][i]
-        data[1][i] = temp
+        temp = data[0][idx_min]
+        data[0][idx_min] = data[0][i]
+        data[0][i] = temp
 
-    for i in range(utility.length(data[1])):
-        print(f"{i + 1}. {data[1][i][0][1]} | {data[1][i][1][1]} | {data[1][i][4][1]} | {data[1][i][2][1]} | {data[1][i][3][1]} | {data[1][i][5][1]}")
+    # Mencetak hasil pengurutan
+    for i in range(utility.length(data[0])):
+        print(f"{i + 1}. {data[0][i][0][1]} | {data[0][i][1][1]} | {data[0][i][4][1]} | {data[0][i][2][1]} | {data[0][i][3][1]} | {data[0][i][5][1]}")
 
 def list_game_toko(data):
     """Fungsi mencetak hasil skema pengurutan"""
@@ -142,6 +143,7 @@ def list_game_toko(data):
     dummy_data = []
     for i in data:
         dummy_data += [i]
+    dummy_data[0], dummy_data[1] = dummy_data[1], dummy_data[0]
 
     prompt = input("Skema sorting: ")
     if prompt == 'tahun+':
