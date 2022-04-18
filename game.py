@@ -139,7 +139,10 @@ def list_game_toko_ascending(data, scheme):
 def list_game_toko(data):
     """Fungsi mencetak hasil skema pengurutan"""
     # Menyimpan data pada variabel baru agar saat di save tidak merubah urutan database utama
-    dummy_data = data
+    dummy_data = []
+    for i in data:
+        dummy_data += [i]
+
     prompt = input("Skema sorting: ")
     if prompt == 'tahun+':
         list_game_toko_ascending(dummy_data, 'tahun')
@@ -151,6 +154,7 @@ def list_game_toko(data):
         list_game_toko_descending(dummy_data, 'harga')
     else:
         print("Skema sorting tidak valid!")
+
 # buy game
 
 def stock(a, data) :
