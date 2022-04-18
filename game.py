@@ -256,8 +256,47 @@ def search_my_game(iduser, DataGame, DataKepemilikan):
     else:
         print("Tidak ada game pada inventory-mu yang memenuhi kriteria")
         
-# Top Up Saldo 
+#Mencari Game di Toko dari ID, Nama Game, Harga, Kategori dan Tahun Rilis
+def search_game_at_store(DataGame):
+    id = input("Masukkan ID Game: ")
+    nama = input("Masukkan Nama Game: ")
+    harga = input("Masukkan Harga: ")
+    kategori = input("Masukkan Kategori: ")
+    thn = input("Masukkan tahun rilis: ")
 
+    if id:
+        for i in range(utility.length(DataGame) - 1, -1, -1):
+            if DataGame[i][0][1] != id:
+                DataGame = utility.removebaris(DataGame, i)
+
+    if nama:
+        for i in range(utility.length(DataGame) - 1, -1, -1):
+            if DataGame[i][1][1] != nama:
+                DataGame = utility.removebaris(DataGame, i)
+
+    if harga:
+        for i in range(utility.length(DataGame) - 1, -1, -1):
+            if DataGame[i][4][1] != harga:
+                DataGame = utility.removebaris(DataGame, i)
+
+    if kategori:
+        for i in range(utility.length(DataGame) - 1, -1, -1):
+            if DataGame[i][2][1] != kategori:
+                DataGame = utility.removebaris(DataGame, i)
+
+    if thn:
+        for i in range(utility.length(DataGame) - 1, -1, -1):
+            if DataGame[i][3][1] != thn:
+                DataGame = utility.removebaris(DataGame, i)
+
+
+    if DataGame:
+        print("\nDaftar game pada toko yang memenuhi kriteria: ")
+        print(DataGame)
+    else:
+        print("Tidak ada game pada toko yang memenuhi kriteria")   
+        
+# Top Up Saldo 
 def topup(DataUser):
     username = input("Masukkan username: ")
     saldo = input("Masukan saldo: ")
