@@ -73,7 +73,7 @@ def main():
 				elif inp == 'search_my_game':
 					game.search_my_game(dUser[0][1], d[1], d[3])
 				elif inp == 'riwayat':
-					break
+					game.riwayat(dUser[0][1], d[2])
 				else:
 					print(ERROR_MESSAGE)
 		elif inp == 'tictactoe':
