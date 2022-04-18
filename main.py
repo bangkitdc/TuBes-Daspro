@@ -71,7 +71,7 @@ def main():
 				elif inp == 'list_game':
 					game.list_game(dUser[0][1], d)
 				elif inp == 'search_my_game':
-					break
+					game.search_my_game(dUser[0][1], d[1], d[3])
 				elif inp == 'riwayat':
 					break
 				else:
