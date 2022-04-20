@@ -1,4 +1,4 @@
-# Implementasi fungsi sendiri
+# Implementasi fungsi pembantu sendiri
 
 # len() = length()
 def length(lst):
@@ -39,3 +39,21 @@ def join_(e, l):
 		if i != (length(l) - 1):
 			temp += e
 	return temp
+
+# utility F11 & F13
+def removebaris(matriks, baris):
+    arraybaru = []
+    for i in range(baris):
+        arraybaru += [matriks[i]]
+    for i in range(baris+1, length(matriks)):
+        arraybaru += [matriks[i]]
+    return arraybaru
+
+# utility spaces untuk format
+# params1 | params2 | params3 | ...
+def spaces(data, current_data, key):
+    max1 = 0 # max spaces
+    for i in range(length(data)):
+        if length(data[i][key][1]) > max1:
+            max1 = length(data[i][key][1])
+    return (' ' * (max1 - length(current_data)))

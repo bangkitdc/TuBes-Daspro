@@ -5,6 +5,8 @@ file_ext = '.csv'
 filenames = ['user', 'game', 'riwayat', 'kepemilikan']
 headers = []
 
+''' ============================ F15 - load ==========================='''
+
 def read_csv(file, fileidx, sep = ';'):
 	global headers
 	'''
@@ -81,6 +83,8 @@ def load_data(folder_name):
 		with open(path, 'r') as f:
 			data += [read_csv(f, i)]
 	return data
+
+''' ============================ F16 - save ==========================='''
 
 def to_csv(data, fileidx, sep = ';'):
 	global headers

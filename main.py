@@ -51,7 +51,7 @@ def main():
 			elif inp == 'list_game_toko':
 				game.list_game_toko(d)
 			elif inp == 'search_game_at_store':
-				break
+				game.search_game_at_store(d[1])
 			elif dUser[4][1] == 'admin':
 				if inp == 'register':
 					user.register(d)
@@ -73,7 +73,7 @@ def main():
 				elif inp == 'search_my_game':
 					game.search_my_game(dUser[0][1], d[1], d[3])
 				elif inp == 'riwayat':
-					break
+					game.riwayat(dUser[0][1], d[2])
 				else:
 					print(ERROR_MESSAGE)
 		elif inp == 'tictactoe':

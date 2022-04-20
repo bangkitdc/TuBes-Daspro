@@ -1,3 +1,5 @@
+''' ============================ B02 - kerangajaib ==========================='''
+
 # Implementasi LCG (Linear Congruential Generator)
 
 # Xn+1 = ((a * Xn) + c) mod m

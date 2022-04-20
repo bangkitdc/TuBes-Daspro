@@ -1,4 +1,8 @@
 import utility, inputs
+from time import strftime, gmtime
+from utility import spaces
+
+''' ============================ F04 - tambah_game ==========================='''
 
 def tambah_game(data):
     """Fungsi menambah game"""
@@ -27,38 +31,7 @@ def tambah_game(data):
         break
     return data
 
-def ubah_stok(data):
-    """Fungsi untuk mengubah stok game (F06)"""
-    id = inputs.input_valid("Masukkan ID game: ", flagstop = '!x')
-    if id == '!x':
-        return
-    idx = 0
-    flag = False
-    while not flag and idx < utility.length(data[1]):
-        if data[1][idx][0][1] == id:
-            flag = True
-        else:
-            idx += 1
-    if not flag:
-        print("Tidak ada game dengan ID tersebut!")
-    else:
-        try:
-            change = int(input("Masukkan jumlah: "))
-            current_stock = int(data[1][idx][5][1])
-            if current_stock + change >= 0:
-                current_stock += change
-                if change > 0:
-                    print("Stok game " + data[1][idx][1][1] + " berhasil ditambahkan. Stok sekarang: " + str(current_stock))
-                elif change < 0:
-                    print("Stok game " + data[1][idx][1][1] + " berhasil dikurangi. Stok sekarang: " + str(current_stock))
-                else:  # change == 0
-                    print("Stok tidak diubah. Stok sekarang: ", current_stock)
-            else:
-                print("Stok game " + data[1][idx][1][1] + " gagal dikurangi. Stok sekarang: " + str(current_stock) + "( < " + str(abs(change)) + ")")
-            data[1][idx][5][1] = str(current_stock)
-        except ValueError:
-            print("Input tidak valid! Stok harus berupa angka.")
-    return data
+''' ============================ F05 - ubah_game ==========================='''
 
 def ubah_game(data):
     """Fungsi untuk mengubah informasi game kecuali ID game dan stok"""
@@ -93,6 +66,44 @@ def ubah_game(data):
                 print(f"Informasi {id} berhasil diubah.")
     return data
 
+''' ============================ F06 - ubah_stok ==========================='''
+
+def ubah_stok(data):
+    """Fungsi untuk mengubah stok game (F06)"""
+    id = inputs.input_valid("Masukkan ID game: ", flagstop = '!x')
+    if id == '!x':
+        return
+    idx = 0
+    flag = False
+    while not flag and idx < utility.length(data[1]):
+        if data[1][idx][0][1] == id:
+            flag = True
+        else:
+            idx += 1
+    if not flag:
+        print("Tidak ada game dengan ID tersebut!")
+    else:
+        try:
+            change = int(input("Masukkan jumlah: "))
+            current_stock = int(data[1][idx][5][1])
+            if current_stock + change >= 0:
+                current_stock += change
+                if change > 0:
+                    print("Stok game " + data[1][idx][1][1] + " berhasil ditambahkan. Stok sekarang: " + str(current_stock))
+                elif change < 0:
+                    print("Stok game " + data[1][idx][1][1] + " berhasil dikurangi. Stok sekarang: " + str(current_stock))
+                else:  # change == 0
+                    print("Stok tidak diubah. Stok sekarang: ", current_stock)
+            else:
+                print("Stok game " + data[1][idx][1][1] + " gagal dikurangi. Stok sekarang: " + str(current_stock) + "( < " + str(abs(change)) + ")")
+            data[1][idx][5][1] = str(current_stock)
+        except ValueError:
+            print("Input tidak valid! Stok harus berupa angka.")
+    return data
+
+''' ============================ F07 - list_game_toko ==========================='''
+
+''' ============================= Procedure Pembantu ============================'''
 def list_game_toko_descending(data, scheme):
     """Fungsi mengurutkan dari terbesar ke terkecil (menurun)"""
     for i in range(utility.length(data) - 1):
@@ -157,13 +168,7 @@ def list_game_toko_base(data, output = False):
         for i in range(utility.length(data)):
             print(f"{i + 1}. {data[i][0][1]} | {data[i][1][1]} {spaces(data, data[i][1][1], 1)}| {data[i][4][1]} {spaces(data, data[i][4][1], 4)}| {data[i][2][1]} {spaces(data, data[i][2][1], 2)}| {data[i][3][1]} | {data[i][5][1]}")
 
-def spaces(data, current_data, key):
-    max1 = 0 # max spaces
-    for i in range(utility.length(data)):
-        if utility.length(data[i][key][1]) > max1:
-            max1 = utility.length(data[i][key][1])
-    return (' ' * (max1 - utility.length(current_data)))
-
+''' ================================ Fungsi Utama ==============================='''
 def list_game_toko(data):
     """Fungsi mencetak hasil skema pengurutan"""
     # Menyimpan data pada variabel baru agar saat di save tidak merubah urutan database utama
@@ -187,8 +192,9 @@ def list_game_toko(data):
     # ubah ke posisi awal
     list_game_toko_base(dummy_data[1])
 
-# buy game
+''' ============================ F08 - buy_game ==========================='''
 
+''' ========================== Procedure Pembantu ========================='''
 def stock(a, data) :
     stock = data[1][a][5][1]   # dari data game
     return int(stock)
@@ -205,6 +211,8 @@ def nama_game(a, data) :
     nama_game = data[1][a][1][1]     # dari data game
     return nama_game
 
+''' ================================ Fungsi Utama ==============================='''
+
 def buy_game(userID, d) :
     user = d[0]
     game = d[1]
@@ -215,18 +223,18 @@ def buy_game(userID, d) :
     if gameID == '!x':
         return
 
-    for i in range(length(game)) :  # cari gameID di game
+    for i in range(utility.length(game)) :  # cari gameID di game
         if gameID in game[i][0] :   # jika ada gameID di game
             if stock(i, d) > 0 :       # jika stok > 0
                 tidak_punya_game = True
-                for j in range(length(milik)) :                             # cari gameID dan userID di milik
+                for j in range(utility.length(milik)) :                             # cari gameID dan userID di milik
                     if gameID in milik[j][0] and userID in milik[j][1] :    # jika sudah memiliki game
                         print('Anda sudah memiliki game tersebut.')
                         tidak_punya_game = False
                         break
                 
                 if tidak_punya_game == True :
-                    for k in range(length(user)) :                          # cari userID di user jika belum memiliki game
+                    for k in range(utility.length(user)) :                          # cari userID di user jika belum memiliki game
                         if userID in user[k][0] :                       
                             if int(saldo(k, d)) >= int(price(i, d)) :                                                   # jika saldo cukup
                                 print('Anda berhasil membeli Game "%s". Terima kasih.\n' % game[i][1][1])               # berhasil membeli
@@ -247,13 +255,14 @@ def buy_game(userID, d) :
 
             else :  # jika stok = 0
                 print('Mohon maaf, stok Game "%s" sedang habis.' % game[i][1][1])               
-            break
+                break
         else :  # jika tidak ada game dengan gameID yang diinput
             print('Mohon maaf, game tidak ditemukan.')
             print('Coba periksa kembali masukan Anda. Jika menurut Anda terjadi kesalahan, silakan hubungi admin.')
 
-# list game
+''' ============================ F09 - list_game ==========================='''
 
+''' ========================== Procedure Pembantu =========================='''
 def game_id(a, data) :
     game_id = data[1][a][0][1]       # dari data game
     return game_id
@@ -270,19 +279,7 @@ def tahun_rilis(a, data) :
     tahun_rilis = data[1][a][3][1]   # dari data game
     return tahun_rilis
 
-def panjang_nama(data) :
-    longest_name = 0
-    for i in range(utility.length(data[1])) :  # dari data game
-        if utility.length(nama_game(i, data)) >= longest_name :
-            longest_name = utility.length(nama_game(i, data))
-    return longest_name         # return length nama game terpanjang
-
-def panjang_kategori(data) :
-    longest_category = 0
-    for i in range(utility.length(data[1])) :  # dari data game
-        if utility.length(kategori(i, data)) >= longest_category :
-            longest_category = utility.length(kategori(i, data))
-    return longest_category     # return length kategori game terpanjang
+''' ================================ Fungsi Utama ==============================='''
 
 def list_game(userID, d) :
     # user = d[0]
@@ -290,8 +287,8 @@ def list_game(userID, d) :
     # riwayat = d[2]
     milik = d[3]
     
-    longest_name = panjang_nama(d)           # length nama game terpanjang
-    longest_category = panjang_kategori(d)   # length kategori game terpanjang
+    # longest_name = panjang_nama(d)           # length nama game terpanjang
+    # longest_category = panjang_kategori(d)   # length kategori game terpanjang
 
     tidak_punya_game = True
     list_num = 0
@@ -299,10 +296,12 @@ def list_game(userID, d) :
         if userID == milik[i][1][1] :
             for j in range(utility.length(game)) :          # untuk setiap game
                 if game_id(j, d) == milik[i][0][1] :   # jika game_id milik user sama dengan game_id yang dicari
-                    list_num += 1
-                    print(list_num, end = '. ')     # print nomor urut list game yang dimiliki user
+                    # list_num += 1
+                    # print(list_num, end = '. ')     # print nomor urut list game yang dimiliki user
                     
-                    print(game_id(i, d), '|', nama_game(i, d), ' ' * (longest_name - utility.length(nama_game(i, d))), '|', kategori(i, d), ' ' * (longest_category - utility.length(kategori(i, d))), '|', tahun_rilis(i, d), '|', price(i, d))
+                    # print(game_id(i, d), '|', nama_game(i, d), ' ' * (longest_name - utility.length(nama_game(i, d))), '|', kategori(i, d), ' ' * (longest_category - utility.length(kategori(i, d))), '|', tahun_rilis(i, d), '|', price(i, d))
+                    print(f"{list_num + 1}. {game[i][0][1]} | {game[i][1][1]} {spaces(game, game[i][1][1], 1)}| {game[i][2][1]} {spaces(game, game[i][2][1], 2)}| {game[i][3][1]} {spaces(game, game[i][3][1], 3)}| {game[i][4][1]}")
+                    list_num += 1
                     tidak_punya_game = False
     # KETERANGAN :
     # i : index dari game milik user
@@ -312,10 +311,12 @@ def list_game(userID, d) :
     if tidak_punya_game == True :
         print("Maaf, kamu belum memiliki game.")
         
+''' ============================ F10 - search_my_game ==========================='''
 
 # Fungsi mencari game yang dimiliki dari ID dan tahun rilis
 def search_my_game(iduser, DataGame, DataKepemilikan):
-    id = inputs.input_valid("Masukkan ID Game: ", flagstop = '!x')
+    # parameter tidak wajib diisi (tidak validasi)
+    id = input("Masukkan ID Game: [!x untuk membatalkan] ")
     if id == '!x':
         return
     thn = inputs.input_number("Masukkan tahun rilis: ", validation = lambda x : utility.length(x) <= 4, provision = 'Tahun rilis harus berupa angka.')
@@ -342,16 +343,64 @@ def search_my_game(iduser, DataGame, DataKepemilikan):
 
     print("\nDaftar game pada inventory yang memenuhi kriteria: ")
     if gameowned:
-        print(gameowned)
+        for i in range(utility.length(gameowned)):
+            print(f"{i + 1}. {gameowned[i][0][1]} | {gameowned[i][1][1]} {spaces(gameowned, gameowned[i][1][1], 1)}| {gameowned[i][2][1]} {spaces(gameowned, gameowned[i][2][1], 2)}| {gameowned[i][3][1]} {spaces(gameowned, gameowned[i][3][1], 3)}| {gameowned[i][4][1]}")
     else:
         print("Tidak ada game pada inventory-mu yang memenuhi kriteria")
-        
+
+''' ============================ F11 - search_game_at_store ==========================='''
+
+#Mencari Game di Toko dari ID, Nama Game, Harga, Kategori dan Tahun Rilis
+def search_game_at_store(DataGame):
+    # parameter tidak wajib diisi (tidak validasi)
+    id = input("Masukkan ID Game: [!x untuk membatalkan] ")
+    if id == '!x':
+        return
+    nama = input("Masukkan Nama Game: ")
+    harga = input("Masukkan Harga: ")
+    kategori = input("Masukkan Kategori: ")
+    thn = input("Masukkan tahun rilis: ")
+
+    if id:
+        for i in range(utility.length(DataGame) - 1, -1, -1):
+            if DataGame[i][0][1] != id:
+                DataGame = utility.removebaris(DataGame, i)
+
+    if nama:
+        for i in range(utility.length(DataGame) - 1, -1, -1):
+            if DataGame[i][1][1] != nama:
+                DataGame = utility.removebaris(DataGame, i)
+
+    if harga:
+        for i in range(utility.length(DataGame) - 1, -1, -1):
+            if DataGame[i][4][1] != harga:
+                DataGame = utility.removebaris(DataGame, i)
+
+    if kategori:
+        for i in range(utility.length(DataGame) - 1, -1, -1):
+            if DataGame[i][2][1] != kategori:
+                DataGame = utility.removebaris(DataGame, i)
+
+    if thn:
+        for i in range(utility.length(DataGame) - 1, -1, -1):
+            if DataGame[i][3][1] != thn:
+                DataGame = utility.removebaris(DataGame, i)
+
+    if DataGame:
+        print("\nDaftar game pada toko yang memenuhi kriteria: ")
+        for i in range(utility.length(DataGame)):
+            print(f"{i + 1}. {DataGame[i][0][1]} | {DataGame[i][1][1]} {spaces(DataGame, DataGame[i][1][1], 1)}| {DataGame[i][4][1]} {spaces(DataGame, DataGame[i][4][1], 4)}| {DataGame[i][2][1]} {spaces(DataGame, DataGame[i][2][1], 2)}| {DataGame[i][3][1]} | {DataGame[i][5][1]}")
+    else:
+        print("Tidak ada game pada toko yang memenuhi kriteria")   
+
+''' ============================ F12 - topup ==========================='''
+
 # Top Up Saldo 
 def topup(DataUser):
     username = inputs.input_valid("Masukkan username: ", flagstop = '!x')
     if username == '!x':
         return
-    saldo = inputs.input_number("Masukkan harga: ", provision = 'Harga harus berupa angka.')
+    saldo = inputs.input_number("Masukkan harga: ", provision = 'Saldo harus berupa angka.')
     found = False
     baris = 0
     for i in range(utility.length(DataUser)):
@@ -369,7 +418,24 @@ def topup(DataUser):
             DataUser[baris][5][1] = str(saldoakhir)
             nama = DataUser[baris][2][1]
             print(f"Top up berhasil. Saldo {nama} bertambah menjadi {saldoakhir}")
-            print(DataUser)
     else:
         print(f'Username "{username}" tidak ditemukan.')
     return DataUser
+
+''' ============================ F13 - riwayat ==========================='''
+
+# Melihat Riwayat Pembelian
+def riwayat(iduser, DataRiwayat):
+    datariwayatuser = []
+    for i in range(utility.length(DataRiwayat)):
+        if DataRiwayat[i][3][1] == iduser:
+            datariwayatuser += [utility.removebaris(DataRiwayat[i], 3)]
+    # output
+
+    if datariwayatuser == []:
+        print('Maaf, kamu tidak ada riwayat pembelian game. Ketik perintah beli_game untuk membeli.')
+    else:
+        print('Daftar game:')
+        print(datariwayatuser)
+        for i in range(utility.length(datariwayatuser)):
+            print(f"{i + 1}. {datariwayatuser[i][0][1]} | {datariwayatuser[i][1][1]} {spaces(datariwayatuser, datariwayatuser[i][1][1], 1)}| {datariwayatuser[i][2][1]} {spaces(datariwayatuser, datariwayatuser[i][2][1], 2)}| {datariwayatuser[i][3][1]} {spaces(datariwayatuser, datariwayatuser[i][3][1], 3)}| {datariwayatuser[i][4][1]}")

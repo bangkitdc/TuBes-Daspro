@@ -2,6 +2,8 @@ import data
 import inputs, utility
 import hash
 
+''' ============================ F02 - register ==========================='''
+
 def register(data):
 	'''Fungsi Register'''
 	flag = True
@@ -32,6 +34,8 @@ def register(data):
 		print(f'Username {reg_username} telah berhasil register ke dalam "Binomo".')
 	else: # user ditemukan
 		print(f'Username {reg_username} sudah terpakai, silakan menggunakan username lain.')
+
+''' ============================ F03 - login ==========================='''
 
 def login(data):
 	'''Fungsi Login'''

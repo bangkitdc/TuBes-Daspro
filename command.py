@@ -1,6 +1,8 @@
 import inputs, sys, data
 from utility import length
 
+''' ============================ F14 - help ==========================='''
+
 F02 = 'register' # admin
 F03 = 'login' # user and admin
 F04 = 'tambah_game' # admin
@@ -43,6 +45,8 @@ def help(role):
 	print('======== MINI GAMES ========')
 	print('1  || ' + B02 + ' ' * (20 - length(B02)) + ' || Untuk bertanya kepada kerang ajaib', 
     '2  || ' + B03 + ' ' * (20 - length(B03)) + ' || Untuk bermain tic-tac-toe', sep = '\n')
+
+''' ============================ F17 - exit ==========================='''
 
 def exit(d):
 	inp = inputs.input_yesorno('Apakah kamu ingin menyimpan data sebelum keluar? ')

@@ -1,3 +1,5 @@
+''' ============================ B01 - hash(cipher) ==========================='''
+
 # Implementasi affine cipher
 # Menggunakan Euclid's Algorithm dan Extended Euclid's Algorithm
 
