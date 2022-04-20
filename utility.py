@@ -29,3 +29,13 @@ def remove_space(s, params = 'depan'):
 			flag = True
 			string += temp[i]
 	return string
+
+# string.join(iterable) = join_(string, iterable)
+
+def join_(e, l):
+	temp = ''
+	for i in range(length(l)):
+		temp += l[i]
+		if i != (length(l) - 1):
+			temp += e
+	return temp

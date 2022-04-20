@@ -45,8 +45,10 @@ def help(role):
     '2  || ' + B03 + ' ' * (20 - length(B03)) + ' || Untuk bermain tic-tac-toe', sep = '\n')
 
 def exit(d):
-	if inputs.input_yesorno('Apakah kamu ingin menyimpan data sebelum keluar? '):
-		if data.save_data(d) == None:
+	inp = inputs.input_yesorno('Apakah kamu ingin menyimpan data sebelum keluar? ')
+	if inp:
+		data.save_data(d)
+		if data.save_data(d) == None: # error
 			return
 	print()
 	print('Terima kasih! Jangan lupa mampir lagi xixixi ＼ʕ •ᴥ•ʔ／')

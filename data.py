@@ -95,9 +95,9 @@ def to_csv(data, fileidx, sep = ';'):
 			str 	: CSV strings representasi dari data
 	'''
 	output = ''
-	# print Header
-	output = sep.join(headers[fileidx]) + '\n'
-	# print tiap baris setelahnya
+	# masukkan header
+	output = utility.join_(sep, headers[fileidx]) + '\n'
+	# masukkan tiap baris setelahnya
 	for i in data:
 		temp = ''
 		for j in range(utility.length(i)):
