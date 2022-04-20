@@ -101,41 +101,74 @@ def ubah_game(data):
 
 def list_game_toko_descending(data, scheme):
     """Fungsi mengurutkan dari terbesar ke terkecil (menurun)"""
-    for i in range(utility.length(data[0]) - 1):
+    for i in range(utility.length(data) - 1):
         idx_max = i
-        for j in range(i, utility.length(data[0])):
+        for j in range(i, utility.length(data)):
             if scheme == 'tahun':
-                if int(data[0][idx_max][3][1]) < int(data[0][j][3][1]):
+                if int(data[idx_max][3][1]) < int(data[j][3][1]):
                     idx_max = j
             elif scheme == 'harga':
-                if int(data[0][idx_max][4][1]) < int(data[0][j][4][1]):
+                if int(data[idx_max][4][1]) < int(data[j][4][1]):
                     idx_max = j
-        temp = data[0][idx_max]
-        data[0][idx_max] = data[0][i]
-        data[0][i] = temp
+        temp = data[idx_max]
+        data[idx_max] = data[i]
+        data[i] = temp
 
     # Mencetak hasil pengurutan
-    for i in range(utility.length(data[0])):
-        print(f"{i + 1}. {data[0][i][0][1]} | {data[0][i][1][1]} | {data[0][i][4][1]} | {data[0][i][2][1]} | {data[0][i][3][1]} | {data[0][i][5][1]}")
+    for i in range(utility.length(data)):
+        print(f"{i + 1}. {data[i][0][1]} | {data[i][1][1]} {spaces(data, data[i][1][1], 1)}| {data[i][4][1]} {spaces(data, data[i][4][1], 4)}| {data[i][2][1]} {spaces(data, data[i][2][1], 2)}| {data[i][3][1]} | {data[i][5][1]}")
 
 def list_game_toko_ascending(data, scheme):
     """Fungsi mengurutkan dari terkecil ke terbesar (menaik)"""
-    for i in range(utility.length(data[0]) - 1):
+    for i in range(utility.length(data) - 1):
         idx_min = i
-        for j in range(i, utility.length(data[0])):
+        for j in range(i, utility.length(data)):
             if scheme == 'tahun':
-                if int(data[0][idx_min][3][1]) > int(data[0][j][3][1]):
+                if int(data[idx_min][3][1]) > int(data[j][3][1]):
                     idx_min = j
             elif scheme == 'harga':
-                if int(data[0][idx_min][4][1]) > int(data[0][j][4][1]):
+                if int(data[idx_min][4][1]) > int(data[j][4][1]):
                     idx_min = j
-        temp = data[0][idx_min]
-        data[0][idx_min] = data[0][i]
-        data[0][i] = temp
+        temp = data[idx_min]
+        data[idx_min] = data[i]
+        data[i] = temp
 
     # Mencetak hasil pengurutan
-    for i in range(utility.length(data[0])):
-        print(f"{i + 1}. {data[0][i][0][1]} | {data[0][i][1][1]} | {data[0][i][4][1]} | {data[0][i][2][1]} | {data[0][i][3][1]} | {data[0][i][5][1]}")
+    for i in range(utility.length(data)):
+        print(f"{i + 1}. {data[i][0][1]} | {data[i][1][1]} {spaces(data, data[i][1][1], 1)}| {data[i][4][1]} {spaces(data, data[i][4][1], 4)}| {data[i][2][1]} {spaces(data, data[i][2][1], 2)}| {data[i][3][1]} | {data[i][5][1]}")
+
+def game_idx(id):
+    # format = GAMEXXX
+    temp = ''
+    for i in range(7):
+        if i >= 4:
+            temp += id[i]
+    return int(temp)
+
+def list_game_toko_base(data, output = False):
+    """Fungsi mengurutkan dari ID terkecil ke terbesar"""
+    for i in range(utility.length(data) - 1):
+        idx_min = i
+        for j in range(i, utility.length(data)):
+            temp = data[idx_min][0][1] # GAMEID -> GAMEXXX
+            temp1 = data[j][0][1] # GAMEID setelahnya (dibandingkan)
+            if game_idx(temp) > game_idx(temp1):
+                idx_min = j
+        temp_data = data[idx_min]
+        data[idx_min] = data[i]
+        data[i] = temp_data
+
+    # Mencetak hasil pengurutan
+    if output:
+        for i in range(utility.length(data)):
+            print(f"{i + 1}. {data[i][0][1]} | {data[i][1][1]} {spaces(data, data[i][1][1], 1)}| {data[i][4][1]} {spaces(data, data[i][4][1], 4)}| {data[i][2][1]} {spaces(data, data[i][2][1], 2)}| {data[i][3][1]} | {data[i][5][1]}")
+
+def spaces(data, current_data, key):
+    max1 = 0 # max spaces
+    for i in range(utility.length(data)):
+        if utility.length(data[i][key][1]) > max1:
+            max1 = utility.length(data[i][key][1])
+    return (' ' * (max1 - utility.length(current_data)))
 
 def list_game_toko(data):
     """Fungsi mencetak hasil skema pengurutan"""
@@ -143,19 +176,22 @@ def list_game_toko(data):
     dummy_data = []
     for i in data:
         dummy_data += [i]
-    dummy_data[0], dummy_data[1] = dummy_data[1], dummy_data[0]
 
     prompt = input("Skema sorting: ")
     if prompt == 'tahun+':
-        list_game_toko_ascending(dummy_data, 'tahun')
+        list_game_toko_ascending(dummy_data[1], 'tahun')
     elif prompt == 'tahun-':
-        list_game_toko_descending(dummy_data, 'tahun')
+        list_game_toko_descending(dummy_data[1], 'tahun')
     elif prompt == 'harga+':
-        list_game_toko_ascending(dummy_data, 'harga')
+        list_game_toko_ascending(dummy_data[1], 'harga')
     elif prompt == 'harga-':
-        list_game_toko_descending(dummy_data, 'harga')
+        list_game_toko_descending(dummy_data[1], 'harga')
+    elif prompt == '':
+        list_game_toko_base(dummy_data[1], output = True)
     else:
         print("Skema sorting tidak valid!")
+    # ubah ke posisi awal
+    list_game_toko_base(dummy_data[1])
 
 # buy game
 
@@ -317,7 +353,7 @@ def search_my_game(iduser, DataGame, DataKepemilikan):
 # Top Up Saldo 
 def topup(DataUser):
     username = input("Masukkan username: ")
-    saldo = input("Masukan saldo: ")
+    saldo = inputs.input_number("Masukkan harga: ", provision = 'Harga harus berupa angka.')
     found = False
     baris = 0
     for i in range(utility.length(DataUser)):
