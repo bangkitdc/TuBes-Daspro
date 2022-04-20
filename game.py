@@ -4,12 +4,12 @@ def tambah_game(data):
     """Fungsi menambah game"""
     while True:
         # id = input("Masukkan id game: ")
-        nama = inputs.input_valid("Masukkan nama game: ", validation = lambda x : inputs.filter_sep(x), flagstop = '!x')
+        nama = inputs.input_valid("Masukkan nama game: ", flagstop = '!x')
         if nama == '!x':
             return
 
         nama = nama.title() # Agar diawali huruf kapital
-        kategori = inputs.input_valid("Masukkan kategori: ", validation = lambda x : inputs.filter_sep(x)).title()
+        kategori = inputs.input_valid("Masukkan kategori: ").title()
         tahun_rilis = inputs.input_number("Masukkan tahun rilis: ", validation = lambda x : utility.length(x) <= 4, provision = 'Tahun rilis harus berupa angka.')
         harga = inputs.input_number("Masukkan harga: ", provision = 'Harga harus berupa angka.')
         stok = inputs.input_number("Masukkan stok awal: ", provision = 'Stok harus berupa angka.')
@@ -29,7 +29,7 @@ def tambah_game(data):
 
 def ubah_stok(data):
     """Fungsi untuk mengubah stok game (F06)"""
-    id = inputs.input_valid("Masukkan ID game: ", validation = lambda x : filter_sep(x), flagstop = '!x')
+    id = inputs.input_valid("Masukkan ID game: ", flagstop = '!x')
     if id == '!x':
         return
     idx = 0
@@ -62,7 +62,7 @@ def ubah_stok(data):
 
 def ubah_game(data):
     """Fungsi untuk mengubah informasi game kecuali ID game dan stok"""
-    id = inputs.input("Masukkan ID game: ", validation = lambda x : inputs.filter_sep(x), flagstop = '!x')
+    id = inputs.input("Masukkan ID game: ", flagstop = '!x')
     if id == '!x':
         return
     else:
@@ -82,12 +82,6 @@ def ubah_game(data):
             tahun_rilis = input("Masukkan tahun rilis: ")
             harga = input("Masukkan harga: ")
             change = [nama, kategori, str(tahun_rilis), str(harga)]
-
-            # Cek character terlarang ';'
-            for i in change:
-                if not (inputs.filter_sep(i)):
-                    print('Input tidak valid, mengandung character terlarang.')
-                    return
 
             # Cek inputan yang empty
             if inputs.is_empty(change):
@@ -217,7 +211,7 @@ def buy_game(userID, d) :
     riwayat = d[2]
     milik = d[3]
 
-    gameID = inputs.input_valid('Masukkan ID Game: ', validation = lambda x : inputs.filter_sep(x), flagstop = '!x')
+    gameID = inputs.input_valid('Masukkan ID Game: ', flagstop = '!x')
     if gameID == '!x':
         return
 
@@ -321,9 +315,11 @@ def list_game(userID, d) :
 
 # Fungsi mencari game yang dimiliki dari ID dan tahun rilis
 def search_my_game(iduser, DataGame, DataKepemilikan):
-    id = input("Masukkan ID Game: ")
-    thn = input("Masukkan tahun rilis: ")
-    
+    id = inputs.input_valid("Masukkan ID Game: ", flagstop = '!x')
+    if id == '!x':
+        return
+    thn = inputs.input_number("Masukkan tahun rilis: ", validation = lambda x : utility.length(x) <= 4, provision = 'Tahun rilis harus berupa angka.')
+
     gameowned = []
 
     for i in range(utility.length(DataKepemilikan)):
@@ -352,7 +348,9 @@ def search_my_game(iduser, DataGame, DataKepemilikan):
         
 # Top Up Saldo 
 def topup(DataUser):
-    username = input("Masukkan username: ")
+    username = inputs.input_valid("Masukkan username: ", flagstop = '!x')
+    if username == '!x':
+        return
     saldo = inputs.input_number("Masukkan harga: ", provision = 'Harga harus berupa angka.')
     found = False
     baris = 0

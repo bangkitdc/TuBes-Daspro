@@ -120,22 +120,6 @@ def id_generator(num):
 	else:
 		return str(num)
 
-# filter input without seperation
-def filter_sep(x):
-	'''
-		Filter input agar tidak mengandung ';' -> yang akan bermasalah bagi csv
-
-		Arguments:
-			x(str)	: string yang akan diolah (elemen per elemen)
-	
-		Returns:
-			bool 	: jika elemen yang dicek pada string sesuai spesifikasi return True else False
-	'''
-	for i in x:
-		if i == ';':
-			return False
-	return True
-
 # Input numbers
 def input_number(message, validation = lambda x : True, provision = '', parse = True, flagstop = ''):
 	'''
