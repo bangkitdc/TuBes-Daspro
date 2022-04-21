@@ -8,7 +8,7 @@ def length(lst):
 	return count
 
 # .strip() = remove_space()
-def remove_space(s, params = 'depan'):
+def remove_space(s):
 	temp = ''
 	string = ''
 	flag = False

@@ -7,7 +7,7 @@ from utility import spaces
 def tambah_game(data):
     """Fungsi menambah game"""
     while True:
-        # id = input("Masukkan id game: ")
+        # Dibuat validasi per-input
         nama = inputs.input_valid("Masukkan nama game: ", flagstop = '!x')
         if nama == '!x':
             return
@@ -176,7 +176,7 @@ def list_game_toko(data):
     for i in data:
         dummy_data += [i]
 
-    prompt = input("Skema sorting: ")
+    prompt = utility.remove_space(input("Skema sorting: "))
     if prompt == 'tahun+':
         list_game_toko_ascending(dummy_data[1], 'tahun')
     elif prompt == 'tahun-':
@@ -322,7 +322,8 @@ def search_my_game(iduser, DataGame, DataKepemilikan):
     id = input("Masukkan ID Game: [!x untuk membatalkan] ")
     if id == '!x':
         return
-    thn = inputs.input_number("Masukkan tahun rilis: ", validation = lambda x : utility.length(x) <= 4, provision = 'Tahun rilis harus berupa angka.')
+
+    thn = input("Masukkan tahun rilis: ")
 
     gameowned = []
 
@@ -359,9 +360,9 @@ def search_game_at_store(DataGame):
     id = input("Masukkan ID Game: [!x untuk membatalkan] ")
     if id == '!x':
         return
-    nama = input("Masukkan Nama Game: ")
+    nama = input("Masukkan Nama Game: ").title()
     harga = input("Masukkan Harga: ")
-    kategori = input("Masukkan Kategori: ")
+    kategori = input("Masukkan Kategori: ").title()
     thn = input("Masukkan tahun rilis: ")
 
     if id:
@@ -436,9 +437,8 @@ def riwayat(iduser, DataRiwayat):
     # output
 
     if datariwayatuser == []:
-        print('Maaf, kamu tidak ada riwayat pembelian game. Ketik perintah beli_game untuk membeli.')
+        print('Maaf, kamu tidak ada riwayat pembelian game. Ketik perintah `buy_game` untuk membeli.')
     else:
         print('Daftar game:')
-        print(datariwayatuser)
         for i in range(utility.length(datariwayatuser)):
-            print(f"{i + 1}. {datariwayatuser[i][0][1]} | {datariwayatuser[i][1][1]} {spaces(datariwayatuser, datariwayatuser[i][1][1], 1)}| {datariwayatuser[i][2][1]} {spaces(datariwayatuser, datariwayatuser[i][2][1], 2)}| {datariwayatuser[i][3][1]} {spaces(datariwayatuser, datariwayatuser[i][3][1], 3)}| {datariwayatuser[i][4][1]}")
+            print(f"{i + 1}. {datariwayatuser[i][0][1]} | {datariwayatuser[i][1][1]} {spaces(datariwayatuser, datariwayatuser[i][1][1], 1)}| {datariwayatuser[i][2][1]} {spaces(datariwayatuser, datariwayatuser[i][2][1], 2)}| {datariwayatuser[i][3][1]} {spaces(datariwayatuser, datariwayatuser[i][3][1], 3)}")
