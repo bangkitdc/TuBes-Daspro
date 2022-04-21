@@ -223,8 +223,11 @@ def buy_game(userID, d) :
     if gameID == '!x':
         return
 
+    ada_game = False
     for i in range(utility.length(game)) :  # cari gameID di game
         if gameID in game[i][0] :   # jika ada gameID di game
+            ada_game = True
+
             if stock(i, d) > 0 :       # jika stok > 0
                 tidak_punya_game = True
                 for j in range(utility.length(milik)) :                             # cari gameID dan userID di milik
@@ -256,9 +259,9 @@ def buy_game(userID, d) :
             else :  # jika stok = 0
                 print('Mohon maaf, stok Game "%s" sedang habis.' % game[i][1][1])               
                 break
-        else :  # jika tidak ada game dengan gameID yang diinput
-            print('Mohon maaf, game tidak ditemukan.')
-            print('Coba periksa kembali masukan Anda. Jika menurut Anda terjadi kesalahan, silakan hubungi admin.')
+    if ada_game == False :  # jika tidak ada game dengan gameID yang diinput
+        print('Mohon maaf, game tidak ditemukan.')
+        print('Coba periksa kembali masukan Anda. Jika menurut Anda terjadi kesalahan, silakan hubungi admin.')
 
 ''' ============================ F09 - list_game ==========================='''
 
