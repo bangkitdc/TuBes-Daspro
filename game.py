@@ -225,20 +225,20 @@ def buy_game(userID, d) :
 
     ada_game = False
     for i in range(utility.length(game)) :  # cari gameID di game
-        if gameID in game[i][0] :   # jika ada gameID di game
+        if gameID == game[i][0][1] :   # jika ada gameID di game
             ada_game = True
 
             if stock(i, d) > 0 :       # jika stok > 0
                 tidak_punya_game = True
                 for j in range(utility.length(milik)) :                             # cari gameID dan userID di milik
-                    if gameID in milik[j][0] and userID in milik[j][1] :    # jika sudah memiliki game
+                    if gameID == milik[j][0][1] and userID == milik[j][1][1] :    # jika sudah memiliki game
                         print('Anda sudah memiliki game tersebut.')
                         tidak_punya_game = False
                         break
                 
                 if tidak_punya_game == True :
                     for k in range(utility.length(user)) :                          # cari userID di user jika belum memiliki game
-                        if userID in user[k][0] :                       
+                        if userID == user[k][0][1] :                                # jika userID ada di user
                             if int(saldo(k, d)) >= int(price(i, d)) :                                                   # jika saldo cukup
                                 print('Anda berhasil membeli Game "%s". Terima kasih.\n' % game[i][1][1])               # berhasil membeli
                                 print('Saldo Anda sekarang adalah Rp' + str(int(saldo(k, d)) - int(price(i, d))) + '.') # saldo baru
