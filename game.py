@@ -7,7 +7,7 @@ from utility import spaces
 def tambah_game(data):
     """Fungsi menambah game"""
     while True:
-        # Dibuat validasi per-input
+        # Dibuat validasi per-input (khusus saat menambah game)
         nama = inputs.input_valid("Masukkan nama game: ", flagstop = '!x')
         if nama == '!x':
             return
@@ -290,19 +290,12 @@ def list_game(userID, d) :
     # riwayat = d[2]
     milik = d[3]
     
-    # longest_name = panjang_nama(d)           # length nama game terpanjang
-    # longest_category = panjang_kategori(d)   # length kategori game terpanjang
-
     tidak_punya_game = True
     list_num = 0
     for i in range(utility.length(milik)) :             # untuk setiap game milik user
         if userID == milik[i][1][1] :
             for j in range(utility.length(game)) :          # untuk setiap game
                 if game_id(j, d) == milik[i][0][1] :   # jika game_id milik user sama dengan game_id yang dicari
-                    # list_num += 1
-                    # print(list_num, end = '. ')     # print nomor urut list game yang dimiliki user
-                    
-                    # print(game_id(i, d), '|', nama_game(i, d), ' ' * (longest_name - utility.length(nama_game(i, d))), '|', kategori(i, d), ' ' * (longest_category - utility.length(kategori(i, d))), '|', tahun_rilis(i, d), '|', price(i, d))
                     print(f"{list_num + 1}. {game[i][0][1]} | {game[i][1][1]} {spaces(game, game[i][1][1], 1)}| {game[i][2][1]} {spaces(game, game[i][2][1], 2)}| {game[i][3][1]} {spaces(game, game[i][3][1], 3)}| {game[i][4][1]}")
                     list_num += 1
                     tidak_punya_game = False
