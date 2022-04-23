@@ -52,6 +52,11 @@ def gcd(x,y):
 
 def modinv(a, b):
 	# Extended Euclid's Algorithm (ax + by = gcd(a, b))
+	g = gcd(a, b)
+
+	if g != 1: # modular inverse ada, jika dan hanya jika gcd(a, b) = 1
+		return None
+
 	# a > b
 	if b > a:
 		temp = a
@@ -76,3 +81,5 @@ def modinv(a, b):
 	# return koefisien b saat remainder = 0
 	# ini yang menyebabkan modulo inverse dari a, ax = 1 (mod b)
 	return t[-2]
+
+print(modinv(77, 30))
