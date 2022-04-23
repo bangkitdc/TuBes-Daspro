@@ -81,5 +81,3 @@ def modinv(a, b):
 	# return koefisien b saat remainder = 0
 	# ini yang menyebabkan modulo inverse dari a, ax = 1 (mod b)
 	return t[-2]
-
-print(modinv(77, 30))
