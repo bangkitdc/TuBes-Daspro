@@ -106,7 +106,7 @@ def to_csv(data, fileidx, sep = ';'):
 		temp = ''
 		for j in range(utility.length(i)):
 			temp += i[j][1]
-			if j != len(i) - 1:
+			if j != utility.length(i) - 1:
 				temp += sep
 		output += temp + '\n' # diakhiri dengan newline
 	return output
