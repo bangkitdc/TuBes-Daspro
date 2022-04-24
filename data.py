@@ -130,16 +130,17 @@ def save_data(data):
 			print('Failed to save data!')
 			return
 	print('Saving...')
+	for i in ('...'):
+		print(i)
+		time.sleep(1)
 	for i in range(utility.length(filenames)):
 		path = os.path.join(folder_name, filenames[i]+file_ext)
 		try:
 			with open(path, 'w') as f:
 				f.write(to_csv(data[i], i))
-		except OSError as error:
+		except OSError as error: # error
 			print(error)
 			print('Data unsaved!')
 			return None
-	for i in ('...'):
-		print(i)
-		time.sleep(1)
 	print('Data saved succesfully!')
+	return

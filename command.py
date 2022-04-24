@@ -1,4 +1,4 @@
-import inputs, sys, data
+import inputs, sys, data, bmo
 from utility import length
 
 ''' ============================ F14 - help ==========================='''
@@ -52,9 +52,7 @@ def exit(d):
 	inp = inputs.input_yesorno('Apakah kamu ingin menyimpan data sebelum keluar? ')
 	if inp:
 		data.save_data(d)
-		if data.save_data(d) == None: # error
-			return
-	print()
+	bmo.thanku()
 	print('Terima kasih! Jangan lupa mampir lagi xixixi ＼ʕ •ᴥ•ʔ／')
 	print()
 	sys.exit()
