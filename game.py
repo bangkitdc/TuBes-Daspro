@@ -330,12 +330,12 @@ def search_my_game(iduser, DataGame, DataKepemilikan):
     if id:
         for i in range(utility.length(gameowned) - 1, -1, -1):
             if gameowned[i][0][1] != id:
-                gameowned = utility.remove_space(gameowned, i)
+                gameowned = utility.removebaris(gameowned, i)
 
     if thn:
         for i in range(utility.length(gameowned) - 1, -1, -1):
             if gameowned[i][3][1] != thn:
-                gameowned = utility.remove_space(gameowned, i)
+                gameowned = utility.removebaris(gameowned, i)
 
 
     print("\nDaftar game pada inventory yang memenuhi kriteria: ")
