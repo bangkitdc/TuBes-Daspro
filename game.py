@@ -35,7 +35,7 @@ def tambah_game(data):
 
 def ubah_game(data):
     """Fungsi untuk mengubah informasi game kecuali ID game dan stok"""
-    id = inputs.input("Masukkan ID game: ", flagstop = '!x')
+    id = inputs.input_valid("Masukkan ID game: ", flagstop = '!x')
     if id == '!x':
         return
     else:

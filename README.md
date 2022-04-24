@@ -3,7 +3,7 @@
 1. Buka di terminal dan type `python main.py data'
 2. Bisa ketik `help` buat liat command sesuai role
 3. Awal mula masuk, itu sebagai role `guest`
-4. disini ada 2 akun
+4. Disini ada 2 akun
 - username: admin, pass: admin12345 -> sebagai admin
 - username: tara123, pass: arianagrande -> sebagai user
 5. Udah bisa untuk parse csv filenya, nah kalau mau liat struktur datanya ketik 'debug'
