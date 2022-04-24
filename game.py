@@ -296,7 +296,7 @@ def list_game(userID, d) :
         if userID == milik[i][1][1] :
             for j in range(utility.length(game)) :          # untuk setiap game
                 if game_id(j, d) == milik[i][0][1] :   # jika game_id milik user sama dengan game_id yang dicari
-                    print(f"{list_num + 1}. {game[i][0][1]} | {game[i][1][1]} {spaces(game, game[i][1][1], 1)}| {game[i][2][1]} {spaces(game, game[i][2][1], 2)}| {game[i][3][1]} {spaces(game, game[i][3][1], 3)}| {game[i][4][1]}")
+                    print(f"{list_num + 1}. {game[j][0][1]} | {game[j][1][1]} {spaces(game, game[j][1][1], 1)}| {game[j][2][1]} {spaces(game, game[j][2][1], 2)}| {game[j][3][1]} {spaces(game, game[j][3][1], 3)}| {game[j][4][1]}")
                     list_num += 1
                     tidak_punya_game = False
     # KETERANGAN :
